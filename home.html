@@ -3,9 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <!-- Custome style  -->
+     <style>
+        *{
+              font-family: "Geist", sans-serif;
+        }
+     </style>
+
+    <!-- Tailwind and DaisyUI  -->
+     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Google Fonts  -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- Fontawesome  -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <!-- FavIcon  -->
+      <link rel="shortcut icon" href="./assets/github-logo.png" type="image/x-icon">
+    <title>Home</title>
 </head>
-<body>
-    
+<body class="bg-base-300 min-h-screen">
+    <header>
+<div class="navbar bg-base-100 shadow-sm">
+  <div class="navbar-start gap-3">
+    <img class="w-10 h-10" src="./assets/github-logo.png" alt="">
+    <h1 class="text-center text-xl font-bold">GitHub Issues Tracker</h1>
+  </div>
+  <div class="navbar-end">
+ <div class="join gap-1">
+  <div>
+    <label class="input rounded">
+       <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <g
+      stroke-linejoin="round"
+      stroke-linecap="round"
+      stroke-width="2.5"
+      fill="none"
+      stroke="currentColor"
+    >
+      <circle cx="11" cy="11" r="8"></circle>
+      <path d="m21 21-4.3-4.3"></path>
+    </g>
+  </svg>
+      <input type="text" placeholder="Search issues..." />
+    </label>
+    <div class="validator-hint hidden">Enter valid Issues</div>
+  </div>
+  <button class="btn btn-primary rounded"><i class="fa-solid fa-plus"></i> New Issues</button>
+</div>
+  </div>  
+</div>
+    </header>
+    <section class="toggle-section w-11/12 bg-white mx-auto my-5 rounded-lg">
+        <div class="flex justify-between">
+              <div class="status-button flex flex-wrap gap-2 p-5">
+              <button onclick="toggleBtn('all')" class="btn btn-primary" id="all-btn">All</button>
+              <button onclick="toggleBtn('open')" class="btn" id="open-btn">Open</button>
+              <button onclick="toggleBtn('closed')" class="btn" id="closed-btn">Closed</button>
+              </div>
+            </div>
+    </section>
+    <section class="w-11/12 bg-white mx-auto py-5 rounded-lg">
+            <div class="flex justify-between m-4">
+                <div class="issues-icon flex gap-2">
+                <img class="h-[50px] w-[50px]" src="./assets/Aperture.png" alt="">
+                <div>
+                    <h2 class="font-bold">50 Issues</h2>
+                    <p class="font-normal text-gray-600">Track and manage your project issues.</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <div class="flex gap-1 items-center">
+                    <i class="fa-solid fa-circle text-green-700"></i>
+                    <p>Open</p>
+                </div>
+                <div class="flex gap-1 items-center">
+                    <i class="fa-solid fa-circle text-purple-700"></i>
+                    <p>Closed</p>
+                </div>
+            </div>
+            </div>
+    </section>
+
+    <main>
+        <section class="card-section">
+            
+        </section>
+    </main>
+   <script src="./script/home.js"></script>
 </body>
 </html>
+
+

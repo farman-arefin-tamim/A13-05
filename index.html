@@ -3,9 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Custome style  -->
+     <style>
+        *{
+              font-family: "Geist", sans-serif;
+        }
+     </style>
+
+    <!-- Tailwind and DaisyUI  -->
+     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Google Fonts  -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- Fontawesome  -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <!-- FavIcon  -->
+      <link rel="shortcut icon" href="./assets/github-logo.png" type="image/x-icon">
     <title>Github Issue Tracker</title>
 </head>
-<body>
-    
+<body class="bg-base-300 min-h-screen flex items-center justify-center">
+   <main class="min-h-[50vh]  max-w-md bg-white mx-auto overflow-y-auto p-10 rounded-lg">
+        <div>
+            <img class="mx-auto w-[100px] h-[100px]" src="./assets/github-logo.png" alt="">
+            <h1 class="text-center text-xl font-bold">GitHub Issues Tracker</h1>
+        </div>
+        <div>
+        <fieldset class="fieldset rounded-box w-xs p-4">
+        <!-- <legend class="fieldset-legend">Login</legend> -->
+
+        <label class="label font-black">Username</label>
+        <input id="input-username" type="text" class="input" placeholder="Enter username" />
+
+        <label class="label font-black">Password</label>
+        <input id="input-password" type="password" class="input" placeholder="Enter Password" />
+        <button id="login-btn" class="btn btn-primary mt-4 rounded-lg">Login</button>
+        </fieldset>
+        </div>
+        <div class="text-center space-y-2 mt-4">
+            <hr>
+            <h2>OR</h2>
+            <p>Demo Credintials:</p>
+            <h4 class="font-bold">Username: <span class="font-light">admin</span></h4>
+            <h4 class="font-bold">Password: <span class="font-light">admin123</span></h4>
+        </div>
+   </main>
+   <script src="./script/index.js"></script>
 </body>
 </html>
+
+
