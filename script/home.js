@@ -17,32 +17,13 @@ const loadData=()=>{
 
 let currentStates='all';
 
-// const toggleBtn=(id)=>{
-//     currentStates=id;
-//     allBtn.classList.remove('btn-primary');
-//     openBtn.classList.remove('btn-primary');
-//     closedBtn.classList.remove('btn-primary');
-
-//     allBtn.classList.add('btn');
-//     openBtn.classList.add('btn');
-//     closedBtn.classList.add('btn');
-
-//     const selected = document.getElementById(id);
-//     selected.classList.add('btn-primary');
-
-//     if(id=='all-btn'){
-//         displaydata();
-//     }else if(currentStates=='open-btn'){
-
-//     }
-// };
 
 function switchTab(id){
+    console.log(id);
     const tabs=["all","open","closed"];
 
     for(const tab of tabs){
         const tabName=document.getElementById(tab+"-btn");
-        console.log(tabName);
         if(tab===id){
             tabName.classList.add("btn-primary");
         }else{
@@ -76,7 +57,69 @@ const borderClass={
 };
 
 
+// const displaydata=(issues)=>{
+   
+//     openData=[];
+//     closedData=[];
+
+//     // separate open and closed issues
+//     for(const issue of issues){
+
+//         if(issue.status === "open"){
+//             openData.push(issue);
+//         }else{
+//             closedData.push(issue);
+//         }
+
+//     }
+
+//     const cardSection = document.getElementById("card-section");
+//     cardSection.innerHTML="";
+
+//     for(const issue of issues){
+//         const card=document.createElement("div");
+//         card.innerHTML=`
+//              <div class="card w-70 h-70 bg-base-100 card-sm shadow-sm border-t-4 ${borderClass[issue.status]}">
+//                 <div class="card-body">
+//                      <div class="flex justify-between">
+//                         <img src="${statusImg(issue)}" alt="">
+//                         <div class="badge badge-soft font-semibold ${priorityClasses[issue.priority]}">${issue.priority}</div>
+//                     </div>
+//                     <h2 class="card-title">${issue.title}</h2>
+//                     <p class="text-gray-400">${issue.description}</p>
+
+//                     <div>
+//                         <div class="badge badge-soft badge-warning">${issue.labels[0]}</div>
+//                         <div class="badge badge-soft badge-warning">${issue.labels[1]?issue.labels[1]:""}</div>
+//                     </div>
+//                     <hr class="text-gray-400">
+//                     <div class="text-gray-400">
+//                         <p>#1 by ${issue.author}</p>
+//                         <p>${new Date(issue.createdAt).toLocaleDateString()}</p>
+//                     </div>
+//                 </div>
+//             </div>
+//         `;
+//         cardSection.appendChild(card);
+//     }
+// };
+console.log(openData);
 const displaydata=(issues)=>{
+
+    
+    openData=[];
+    closedData=[];
+
+    for(const issue of issues){
+
+        if(issue.status === "open"){
+            openData.push(issue);
+        }else{
+            closedData.push(issue);
+        }
+
+    }
+
     const cardSection = document.getElementById("card-section");
     cardSection.innerHTML="";
 
@@ -94,13 +137,16 @@ const displaydata=(issues)=>{
 
                     <div>
                         <div class="badge badge-soft badge-warning">${issue.labels[0]}</div>
-                        <div class="badge badge-soft badge-warning">${issue.labels[1]?issue.labels[1]:""}</div>
+                        <div class="badge badge-soft badge-warning">${issue.labels[1] ? issue.labels[1] : ""}</div>
                     </div>
+
                     <hr class="text-gray-400">
+
                     <div class="text-gray-400">
                         <p>#1 by ${issue.author}</p>
                         <p>${new Date(issue.createdAt).toLocaleDateString()}</p>
                     </div>
+
                 </div>
             </div>
         `;
@@ -108,4 +154,7 @@ const displaydata=(issues)=>{
     }
 };
 
+
+
 loadData();
+
