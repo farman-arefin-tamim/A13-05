@@ -22,7 +22,7 @@ const keyword used for declaring a variable which cannot be changed or reassign.
 
 ## 2. What is the spread operator (...)?
 
-spread operator used for copying all elements from one array to another.
+    `spread operator used for copying all elements from one array to another.`
 ---
 
 ## 3. What is the difference between map(), filter(), and forEach()?
