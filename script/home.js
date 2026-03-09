@@ -5,14 +5,24 @@ const allBtn=document.getElementById("all-btn");
 const openBtn=document.getElementById("open-btn");
 const closedBtn=document.getElementById("closed-btn");
 
+let countAll=document.getElementById("count");
 
 
+// const loadData=()=>{
+//     const url="https://phi-lab-server.vercel.app/api/v1/lab/issues";
+//     fetch(url)
+//     .then(res=>res.json())
+//     .then(data=>displaydata(data.data));
+// };
+const loadData = async () => {
 
-const loadData=()=>{
-    const url="https://phi-lab-server.vercel.app/api/v1/lab/issues";
-    fetch(url)
-    .then(res=>res.json())
-    .then(data=>displaydata(data.data));
+    const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
+
+    const res = await fetch(url);
+    const data = await res.json();
+
+    displaydata(data.data);
+
 };
 
 let currentStates='all';
@@ -106,7 +116,7 @@ const borderClass={
 console.log(openData);
 const displaydata=(issues)=>{
 
-    
+    countAll.innerText=issues.length;
     openData=[];
     closedData=[];
 
@@ -136,8 +146,7 @@ const displaydata=(issues)=>{
                     <p class="text-gray-400">${issue.description}</p>
 
                     <div>
-                        <div class="badge badge-soft badge-warning">${issue.labels[0]}</div>
-                        <div class="badge badge-soft badge-warning">${issue.labels[1] ? issue.labels[1] : ""}</div>
+                       ${issue.labels.map(label =>`<div class="badge badge-soft gap-1 badge-warning">${label}</div>`).join("")}
                     </div>
 
                     <hr class="text-gray-400">
@@ -154,7 +163,23 @@ const displaydata=(issues)=>{
     }
 };
 
+allBtn.addEventListener("click", ()=>{
+    currentStates="all";
+    switchTab("all");
+    displaydata([...openData,...closedData]);
+});
 
+openBtn.addEventListener("click", ()=>{
+    currentStates="open";
+    switchTab("open");
+    displaydata(openData);
+});
+
+closedBtn.addEventListener("click", ()=>{
+    currentStates="closed";
+    switchTab("closed");
+    displaydata(closedData);
+});
 
 loadData();
 
