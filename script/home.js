@@ -117,7 +117,39 @@ const borderClass={
 //         cardSection.appendChild(card);
 //     }
 // };
-console.log(openData);
+
+
+const displayModal=(cardId)=>{
+    const cardDetails=document.getElementById("card-details");
+    cardDetails.innerHTML=`
+          <dialog id="issue-modal" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+            <h3 class="text-lg font-bold">${cardId.title}</h3>
+            <div class="flex gap-3">
+                <div class="badge ${cardId.status==='open'?`badge-success`:`badge-error`} text-white rounded-full">${cardId.status==="open"?"Opened":"Closed"}</div>
+                <p class="text-gray-500"> <span>${cardId.status==="open"?"Opened by":"Closed by"} </span>${cardId.author}</p>
+                <p class="text-gray-500">${new Date(cardId.createdAt).toLocaleDateString()}</p>
+            </div>
+            <p class="py-4">${cardId.description}</p>
+            <div class="bg-base-300 w-11/12 flex justify-between p-2 rounded-xl">
+                <div><p class="text-gray-600">Assignee:</br><span class="font-bold text-md text-black">${cardId.author}</span></p></div>
+                <div><p class="text-gray-600">Priority:</br><div class="badge ${priorityClasses[cardId.priority]} rounded-full">${cardId.priority}</div></p></div>
+            </div>
+            <div class="modal-action">
+             <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+                <button class="btn btn-primary">Close</button>
+                </form>
+                 </div>
+            </div>
+        </dialog>
+    
+    `;
+    document.getElementById('issue-modal').showModal();
+    console.log(cardId);
+};
+
+
 const displaydata=(issues)=>{
 
     countAll.innerText=issues.length;
@@ -128,7 +160,7 @@ const displaydata=(issues)=>{
 
         if(issue.status === "open"){
             openData.push(issue);
-        }else{
+        }else if(issue.status === "closed"){
             closedData.push(issue);
         }
 
@@ -164,6 +196,9 @@ const displaydata=(issues)=>{
             </div>
         `;
         cardSection.appendChild(card);
+        card.addEventListener("click",function(){
+            displayModal(issue);
+        });
     }
 };
 
