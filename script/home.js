@@ -1,5 +1,4 @@
-let openData=[];
-let closedData=[];
+let allData=[];
 
 const allBtn=document.getElementById("all-btn");
 const openBtn=document.getElementById("open-btn");
@@ -24,8 +23,10 @@ const loadData = async () => {
 
     const res = await fetch(url);
     const data = await res.json();
+    //allData.push(data.data);
+    allData=data.data;
     loadingSpinner.classList.add("hidden");
-    displaydata(data.data);
+    displaydata(allData);
 
 };
 
@@ -52,7 +53,7 @@ switchTab(currentStates);
 const statusImg=(issue)=>{
     if(issue.status==="open"){
         return './assets/Open-Status.png';
-    }else{
+    }else if(issue.status==="closed"){
         return './assets/Closed-Status.png';
     }
 };
@@ -153,18 +154,16 @@ const displayModal=(cardId)=>{
 const displaydata=(issues)=>{
 
     countAll.innerText=issues.length;
-    openData=[];
-    closedData=[];
+   
+    // for(const issue of issues){
 
-    for(const issue of issues){
+    //     if(issue.status === "open"){
+    //         openData.push(issue);
+    //     }else if(issue.status === "closed"){
+    //         closedData.push(issue);
+    //     }
 
-        if(issue.status === "open"){
-            openData.push(issue);
-        }else if(issue.status === "closed"){
-            closedData.push(issue);
-        }
-
-    }
+    // }
 
     const cardSection = document.getElementById("card-section");
     cardSection.innerHTML="";
@@ -205,20 +204,43 @@ const displaydata=(issues)=>{
 allBtn.addEventListener("click", ()=>{
     currentStates="all";
     switchTab("all");
-    displaydata([...openData,...closedData]);
+    displaydata(allData);
 });
 
 openBtn.addEventListener("click", ()=>{
     currentStates="open";
     switchTab("open");
-    displaydata(openData);
+    const openIssues = allData.filter(
+        issue => issue.status === "open"
+    );
+
+    displaydata(openIssues);
 });
 
 closedBtn.addEventListener("click", ()=>{
     currentStates="closed";
     switchTab("closed");
-    displaydata(closedData);
+     const closedIssues = allData.filter(
+        issue => issue.status === "closed"
+    );
+
+    displaydata(closedIssues);
 });
 
 loadData();
 
+document.getElementById("search-btn").addEventListener("click",function(){
+    const input=document.getElementById("input-btn");
+    const search=input.value;
+
+    fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues/")
+    .then(res=>res.json())
+    .then(data=>{
+        const allSearch=data.data;
+        const filterSearch=allSearch.filter((word)=>
+            word.title.toLowerCase().includes(search)
+        );
+        displaydata(filterSearch);
+    });
+
+})
