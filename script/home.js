@@ -5,6 +5,8 @@ const allBtn=document.getElementById("all-btn");
 const openBtn=document.getElementById("open-btn");
 const closedBtn=document.getElementById("closed-btn");
 
+const loadingSpinner=document.getElementById("loading-spinner");
+
 let countAll=document.getElementById("count");
 
 
@@ -16,11 +18,13 @@ let countAll=document.getElementById("count");
 // };
 const loadData = async () => {
 
+    loadingSpinner.classList.remove("hidden");
+    loadingSpinner.classList.add("flex");
     const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
 
     const res = await fetch(url);
     const data = await res.json();
-
+    loadingSpinner.classList.add("hidden");
     displaydata(data.data);
 
 };
@@ -136,7 +140,7 @@ const displaydata=(issues)=>{
     for(const issue of issues){
         const card=document.createElement("div");
         card.innerHTML=`
-             <div class="card w-70 h-70 bg-base-100 card-sm shadow-sm border-t-4 ${borderClass[issue.status]}">
+             <div class="card w-full h-70 bg-base-100 card-sm shadow-sm border-t-4 ${borderClass[issue.status]}">
                 <div class="card-body">
                      <div class="flex justify-between">
                         <img src="${statusImg(issue)}" alt="">
@@ -152,7 +156,7 @@ const displaydata=(issues)=>{
                     <hr class="text-gray-400">
 
                     <div class="text-gray-400">
-                        <p>#1 by ${issue.author}</p>
+                        <p>#${issue.id} by ${issue.author}</p>
                         <p>${new Date(issue.createdAt).toLocaleDateString()}</p>
                     </div>
 

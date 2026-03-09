@@ -28,7 +28,7 @@
 </head>
 <body class="bg-base-300 min-h-screen">
     <header>
-<div class="navbar bg-base-100 shadow-sm">
+<div class="navbar bg-base-100 shadow-sm flex flex-col md:flex-row">
   <div class="navbar-start gap-3">
     <img class="w-10 h-10" src="./assets/github-logo.png" alt="">
     <h1 class="text-center text-xl font-bold">GitHub Issues Tracker</h1>
@@ -90,7 +90,10 @@
     </section>
 
     <main>
-        <section id="card-section" class="w-10/12 mx-auto grid grid-cols-4 mt-3 gap-7">
+        <div id="loading-spinner" class="h-[60vh] hidden justify-center items-center">
+          <span class="loading loading-spinner loading-xl"></span>
+        </div>
+        <section id="card-section" class="w-10/12 mx-auto grid grid-cols-1 lg:grid-cols-4 mt-3 gap-7">
         </section>
     </main>
    <script src="./script/home.js"></script>
